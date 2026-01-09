@@ -11,6 +11,7 @@ public class ImageProcessingDemo {
 
         String workingDir = System.getProperty("user.dir");
         String inputPath = workingDir + File.separator + "sample-input.jpg";
+        String outputBlurPath = workingDir + File.separator + "output-blur.jpg";
 
         File inputFile = new File(inputPath);
         if (!inputFile.exists()) {
@@ -19,15 +20,25 @@ public class ImageProcessingDemo {
         }
 
         Mat originalImage = null;
+        Mat blurredImage = null;
+
         try {
             originalImage = ImageProcessor.loadImage(inputPath);
-            System.out.println("Image was loaded!");
+
+            blurredImage = ImageProcessor.applyGaussianBlur(originalImage, 275);
+            ImageProcessor.saveImage(outputBlurPath, blurredImage);
+
+            System.out.println("Image processed!");
+            System.out.println("Output files:");
+            System.out.println("Blur - " + outputBlurPath);
+
         } catch (Exception e) {
             System.err.println("Image loading failed: " + e.getMessage());
             e.printStackTrace();
         } finally {
             System.err.println("Releasing image resources");
             if (originalImage != null) originalImage.release();
+            if (blurredImage != null) blurredImage.release();
         }
     }
 }
