@@ -23,12 +23,26 @@ public class ImageProcessor {
         System.out.println("Saved image: " + path);
     }
 
+    public static Mat convertToGrayscale(Mat colorImage) {
+        Mat grayImage = new Mat();
+        Imgproc.cvtColor(colorImage, grayImage, Imgproc.COLOR_BGR2GRAY);
+        System.out.println("Converted to grayscale");
+        return grayImage;
+    }
+
     public static Mat applyGaussianBlur(Mat image, int kernelSize) {
         Mat blurred = new Mat();
         org.opencv.core.Size ksize = new org.opencv.core.Size(kernelSize, kernelSize);
         Imgproc.GaussianBlur(image, blurred, ksize, 0);
         System.out.println("Applied Gaussian blur with kernel size: " + kernelSize);
         return blurred;
+    }
+
+    public static Mat detectEdges(Mat image) {
+        Mat edges = new Mat();
+        Imgproc.Canny(image, edges, 50, 150);
+        System.out.println("Applied Canny edge detection");
+        return edges;
     }
 }
 
