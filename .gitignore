@@ -3,6 +3,7 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 .kotlin
+*.jpg
 
 ### IntelliJ IDEA ###
 .idea/

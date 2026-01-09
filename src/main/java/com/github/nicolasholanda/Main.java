@@ -37,13 +37,14 @@ public class Main {
 
         System.out.println("strlen(\"" + testString + "\") = " + length);
         System.out.println("Current PID: " + pid);
-
         try {
             OpenCVLoader.load();
-            System.out.println("OpenCV loads");
         } catch (Exception e) {
             System.err.println("Failed to load OpenCV: " + e.getMessage());
             e.printStackTrace();
+            return;
         }
+
+        ImageProcessingDemo.run();
     }
 }
