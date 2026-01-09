@@ -46,5 +46,7 @@ public class Main {
         }
 
         ImageProcessingDemo.run();
+
+        WebcamDemo.run();
     }
 }
